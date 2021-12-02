@@ -1,4 +1,4 @@
-- name: install docker dependencies
+- name: install erlang dependencies
   become: yes
   apt:
     name:
@@ -7,44 +7,22 @@
       - apt-transport-https
     state: present
 
-- name: add docker GPG key
+- name: add erlang GPG key
   become: yes
   apt_key:
-    url: "{{ item }}"
+    url: https://packages.erlang-solutions.com/ubuntu/erlang_solutions.asc
     state: present
-  loop:
-    - https://github.com/rabbitmq/signing-keys/releases/download/2.0/rabbitmq-release-signing-key.asc
-    - https://keyserver.ubuntu.com/pks/lookup?op=get&search=0xf77f1eda57ebb1cc
-  
 
-- name: add docker repository
+- name: add erlang repository
   become: yes
   apt_repository:
-    repo: "{{ item }}"
+    repo: deb https://packages.erlang-solutions.com/ubuntu focal contrib
     state: present
-  loop:
-    - deb http://ppa.launchpad.net/rabbitmq/rabbitmq-erlang/ubuntu focal main
-    - deb-src http://ppa.launchpad.net/rabbitmq/rabbitmq-erlang/ubuntu focal main
 
-- name: install docker
+- name: install erlang
   become: yes
   apt:
     name:
-      - erlang-base 
-      - erlang-asn1 
-      - erlang-crypto
-      - erlang-eldap
-      - erlang-ftp
-      - erlang-inets
-      - erlang-mnesia
-      - erlang-os-mon
-      - erlang-parsetools
-      - erlang-public-key
-      - erlang-runtime-tools
-      - erlang-snmp
-      - erlang-ssl
-      - erlang-syntax-tools
-      - erlang-tftp
-      - erlang-tools
-      - erlang-xmerl
+      - esl-erlang
+      - elixir
     state: present
