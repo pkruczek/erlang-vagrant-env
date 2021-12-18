@@ -3,4 +3,5 @@
   roles:
     - init
     - erlang
+    - zsh
     - cleanup

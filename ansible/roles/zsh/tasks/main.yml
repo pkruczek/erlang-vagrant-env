@@ -1,0 +1,19 @@
+- name: install required packages for zsh
+  import_tasks: requirements.yml
+
+- name: copy install oh-my-zsh file
+  copy:
+    src: install-oh-my-zsh
+    dest: /tmp/install-oh-my-zsh
+    mode: '0744'
+
+- name: run install-oh-my-zsh script
+  command:
+    cmd: /tmp/install-oh-my-zsh
+    creates: "{{ ansible_user_dir }}/.oh-my-zsh"
+
+- name: change default shell to zsh for user {{ ansible_user_id }}
+  become: yes
+  ansible.builtin.user:
+    name: "{{ ansible_user_id }}"
+    shell: /usr/bin/zsh

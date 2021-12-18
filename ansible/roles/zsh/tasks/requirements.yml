@@ -1,0 +1,6 @@
+- name: install oh my zsh dependencies
+  become: yes
+  apt:
+    name:
+      - zsh
+    state: present
