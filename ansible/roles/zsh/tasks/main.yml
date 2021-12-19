@@ -12,6 +12,12 @@
     cmd: /tmp/install-oh-my-zsh
     creates: "{{ ansible_user_dir }}/.oh-my-zsh"
 
+- name: change theme of oh-my-zsh
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_user_dir }}/.zshrc"
+    regexp: '^ZSH_THEME='
+    line: ZSH_THEME=norm
+
 - name: change default shell to zsh for user {{ ansible_user_id }}
   become: yes
   ansible.builtin.user:
