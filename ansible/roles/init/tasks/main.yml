@@ -3,3 +3,7 @@
   apt:
     update_cache: yes
 
+- name: set hostname
+  become: yes
+  ansible.builtin.hostname:
+    name: "{{ vm_hostname }}"
