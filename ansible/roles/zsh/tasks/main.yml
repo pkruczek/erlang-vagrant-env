@@ -18,6 +18,12 @@
     regexp: '^ZSH_THEME='
     line: ZSH_THEME=norm
 
+- name: enable plugins
+  ansible.builtin.lineinfile:
+    path: "{{ ansible_user_dir }}/.zshrc"
+    regexp: '^plugins='
+    line: 'plugins=(git vi-mode)'
+
 - name: change default shell to zsh for user {{ ansible_user_id }}
   become: yes
   ansible.builtin.user:
