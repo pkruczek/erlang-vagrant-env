@@ -1,0 +1,7 @@
+
+- name: install tools
+  become: yes
+  apt:
+    name:
+      - bat
+    state: present
