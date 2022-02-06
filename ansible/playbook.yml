@@ -4,5 +4,6 @@
     - init
     - erlang
     - zsh
+    - docker
     - tools
     - cleanup

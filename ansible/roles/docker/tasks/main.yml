@@ -1,0 +1,17 @@
+- name: install required packages for docker
+  import_tasks: requirements.yml
+
+- name: create group docker
+  become: yes
+  ansible.builtin.group:
+    name: docker
+    state: present
+
+- name: add current user to docker group
+  become: yes
+  ansible.builtin.user:
+    name: "{{ ansible_user_id }}"
+    groups: ['docker']
+    shell: /bin/bash
+    append: yes
+
