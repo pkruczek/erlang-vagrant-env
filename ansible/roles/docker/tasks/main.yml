@@ -12,6 +12,5 @@
   ansible.builtin.user:
     name: "{{ ansible_user_id }}"
     groups: ['docker']
-    shell: /bin/bash
     append: yes
 
